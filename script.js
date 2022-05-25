@@ -1,5 +1,6 @@
 const colors = document.getElementsByClassName('color');
 const pixelGrid = document.getElementById('pixel-board');
+const pixelToColor = document.getElementsByClassName('pixel');
 
 function colorPalette() {
   colors[0].style.backgroundColor = 'black';
@@ -16,5 +17,21 @@ function createGridPixels() {
   }
 }
 
+function startBlack() {
+  colors[0].classList.add('selected');
+  return alert('COMEÇA COM A COR PRETA');
+}
+
 colorPalette();
 createGridPixels();
+
+window.onload = startBlack();
+
+// const whatColor = document.getElementsByClassName('color');
+
+// function clickToAddColor() {
+// }
+
+// for (let i = 0; i < whatColor.length; i += 1) {
+//   whatColor[i].addEventListener('click', clickToAddColor)
+// }
