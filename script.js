@@ -1,4 +1,5 @@
 const colors = document.getElementsByClassName('color');
+const pixelGrid = document.getElementById('pixel-board');
 
 function colorPalette() {
   colors[0].style.backgroundColor = 'black';
@@ -7,4 +8,13 @@ function colorPalette() {
   colors[3].style.backgroundColor = 'green';
 }
 
-window.onload = colorPalette;
+function createGridPixels() {
+  for (let i = 0; i < 25; i += 1) {
+    const createPixel = document.createElement('div');
+    createPixel.className = 'pixel';
+    pixelGrid.appendChild(createPixel);
+  }
+}
+
+colorPalette();
+createGridPixels();
