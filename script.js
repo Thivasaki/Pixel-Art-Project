@@ -22,16 +22,20 @@ function startBlack() {
   return alert('COMEÇA COM A COR PRETA');
 }
 
+function selectColor(event) {
+  for (let index = 0; index < colors.length; index += 1) {
+    if (colors[index].classList.contains('selected')) {
+      colors[index].classList.remove('selected');
+    }
+  }
+  event.target.classList.add('selected');
+}
+
 colorPalette();
 createGridPixels();
 
-window.onload = startBlack();
+window.onload = startBlack;
 
-// const whatColor = document.getElementsByClassName('color');
-
-// function clickToAddColor() {
-// }
-
-// for (let i = 0; i < whatColor.length; i += 1) {
-//   whatColor[i].addEventListener('click', clickToAddColor)
-// }
+for (let i = 0; i < colors.length; i += 1) {
+  colors[i].addEventListener('click', selectColor);
+}
