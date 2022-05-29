@@ -31,6 +31,10 @@ function selectColor(event) {
   event.target.classList.add('selected');
 }
 
+function paintPixel(event) {
+  event.target.style.backgroundColor = document.querySelector('.selected').style.backgroundColor;
+}
+
 colorPalette();
 createGridPixels();
 
@@ -38,4 +42,8 @@ window.onload = startBlack;
 
 for (let i = 0; i < colors.length; i += 1) {
   colors[i].addEventListener('click', selectColor);
+}
+
+for (let i = 0; i < pixelToColor.length; i += 1) {
+  pixelToColor[i].addEventListener('click', paintPixel);
 }
