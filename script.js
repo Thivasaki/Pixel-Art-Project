@@ -1,6 +1,7 @@
 const colors = document.getElementsByClassName('color');
 const pixelGrid = document.getElementById('pixel-board');
 const pixelToColor = document.getElementsByClassName('pixel');
+const clearButton = document.getElementById('clear-board');
 
 function colorPalette() {
   colors[0].style.backgroundColor = 'black';
@@ -35,6 +36,13 @@ function paintPixel(event) {
   event.target.style.backgroundColor = document.querySelector('.selected').style.backgroundColor;
 }
 
+function clearPixelBoard() {
+  for (let i = 0; i < pixelToColor.length; i += 1) {
+    pixelToColor[i].style.backgroundColor = 'white';
+  }
+}
+
+
 colorPalette();
 createGridPixels();
 
@@ -47,3 +55,5 @@ for (let i = 0; i < colors.length; i += 1) {
 for (let i = 0; i < pixelToColor.length; i += 1) {
   pixelToColor[i].addEventListener('click', paintPixel);
 }
+
+clearButton.addEventListener('click', clearPixelBoard);
