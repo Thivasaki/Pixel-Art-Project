@@ -2,19 +2,63 @@ const colors = document.getElementsByClassName('color');
 const pixelGrid = document.getElementById('pixel-board');
 const pixelToColor = document.getElementsByClassName('pixel');
 const clearButton = document.getElementById('clear-board');
+const generateBoard = document.getElementById('generate-board');
 
 function colorPalette() {
   colors[0].style.backgroundColor = 'black';
-  colors[1].style.backgroundColor = 'aqua';
-  colors[2].style.backgroundColor = 'red';
-  colors[3].style.backgroundColor = 'green';
+  for (let i = 1; i < 4; i += 1) {
+    colors[i].style.backgroundColor = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+  }
 }
 
-function createGridPixels() {
+function minGrid() {
   for (let i = 0; i < 25; i += 1) {
     const createPixel = document.createElement('div');
     createPixel.className = 'pixel';
     pixelGrid.appendChild(createPixel);
+  }
+}
+
+function maxGrid() {
+  for (let i = 0; i < 2500; i += 1) {
+    const createPixel = document.createElement('div');
+    createPixel.className = 'pixel';
+    pixelGrid.appendChild(createPixel);
+  }
+}
+
+function deleteAllGrid() {
+  while (pixelGrid.hasChildNodes()) {
+    pixelGrid.removeChild(pixelGrid.firstChild);
+  }
+}
+
+function alertRed() {
+  if (document.getElementById('board-size').value === '') {
+    return alert('Board inválido!');
+  }
+}
+
+function changeGrid() {
+  alertRed();
+  deleteAllGrid();
+  for (let i = 0; i < parseInt(document.getElementById('board-size').value, 10) ** 2; i += 1) {
+    const createPixel = document.createElement('div');
+    createPixel.className = 'pixel';
+    pixelGrid.appendChild(createPixel);
+  }
+  pixelGrid.style.maxWidth = 42 * parseInt(document.getElementById('board-size').value, 10) + 'px';
+}
+
+function minMaxGrid() {
+  if (parseInt(document.getElementById('board-size').value, 10) < 5) {
+    deleteAllGrid();
+    minGrid();
+  } else if (parseInt(document.getElementById('board-size').value, 10) > 50) {
+    deleteAllGrid();
+    maxGrid();
+  } else {
+    changeGrid();
   }
 }
 
@@ -42,9 +86,8 @@ function clearPixelBoard() {
   }
 }
 
-
 colorPalette();
-createGridPixels();
+minGrid();
 
 window.onload = startBlack;
 
@@ -57,3 +100,4 @@ for (let i = 0; i < pixelToColor.length; i += 1) {
 }
 
 clearButton.addEventListener('click', clearPixelBoard);
+generateBoard.addEventListener('click', minMaxGrid);

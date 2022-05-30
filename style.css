@@ -6,6 +6,10 @@ body {
   display: inline-block;
 }
 
+#board-size {
+  width: 35px;
+}
+
 .color, .selected {
   border: 1px solid black;
   display: inline-block;
@@ -15,7 +19,7 @@ body {
 
 #pixel-board {
   line-height: 0%;
-  max-width: 250px;
+  max-width: 210px;
   display: inline-block;
 }
 
